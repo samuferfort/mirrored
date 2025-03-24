@@ -62,8 +62,8 @@
 </head>
 <body>
     <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header class="">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
                 <img src="../assets/images/logo-desktop.png" alt="Logo" class="h-8 hidden md:h-10 md:block w-auto object-contain" />
@@ -71,13 +71,16 @@
             </div>
 
             <!-- Navigation - Desktop -->
-            <div class="hidden md:flex items-center space-x-2">
-                <button class="bg-black text-white px-4 py-2 rounded"><a href="../index.html">Eventos</a></button>
-                <button class="px-4 py-2"><a href="./calendar.html"> Calendario</a></button>
-                <button class="px-4 py-2"><a href="./multimedia.html">Multimedia</a></button>
-                <button class="px-4 py-2"><a href="./documents.html"> Documentos</a></button>
+            <div class="hidden md:flex items-center space-x-2 ">
+                <div class="bg-white border-gray-200 rounded-md p-1">
+                    <button class="bg-black text-white px-4 py-2 rounded"><a href="../index.html">Eventos</a></button>
+                    <button class="px-4 py-2"><a href="./calendar.html"> Calendario</a></button>
+                    <button class="px-4 py-2"><a href="./multimedia.html">Multimedia</a></button>
+                    <button class="px-4 py-2"><a href="./documents.html"> Documentos</a></button>
+                </div>
+               
                 <div class="relative ml-4">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <img src="../assets/images/avatar.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
                     <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
                 </div>
                 <div class="relative">
@@ -112,7 +115,7 @@
                                 
                             Cerrar sesión
                         </a>
-                        <div class="border-t border-gray-100 my-1"></div>
+                       
                       
                     </div>
                 </div>
@@ -161,8 +164,8 @@
         </div>
     </header>
     <!-- Main Content -->
-    <main class="px-6 py-4">
-        <h2 class="text-3xl font-bold mb-6">Multimedia</h2>
+    <main class="container mx-auto px-6 py-6">
+        <h1 class="text-3xl font-bold mb-8">Multimedia</h1>
         
         <!-- Upload Section -->
         <div class="bg-white rounded-lg p-8 mb-6 flex flex-col items-center justify-center border border-gray-200">
@@ -608,6 +611,36 @@
     
     <!-- JavaScript for dropdown functionality -->
     <script>
+
+             // Toggle dropdown menu
+             document.getElementById('menuButton')?.addEventListener('click', function() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu?.classList.toggle('hidden');
+        });
+
+        // Toggle mobile dropdown menu
+        document.getElementById('mobileMenuButton')?.addEventListener('click', function() {
+            const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+            mobileDropdownMenu?.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const menuButton = document.getElementById('menuButton');
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const mobileDropdownMenu = document.getElementById('mobileDropdownMenu');
+            
+            if (menuButton && dropdownMenu && !menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+            
+            if (mobileMenuButton && mobileDropdownMenu && !mobileMenuButton.contains(event.target) && !mobileDropdownMenu.contains(event.target)) {
+                mobileDropdownMenu.classList.add('hidden');
+            }
+        });
+
+
         // Close all dropdowns
         function closeAllDropdowns() {
             document.querySelectorAll('.dropdown').forEach(dropdown => {
