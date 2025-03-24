@@ -61,7 +61,6 @@
                                 
                             Cerrar sesión
                         </a>
-                        <div class="border-t border-gray-100 my-1"></div>
                       
                     </div>
                 </div>
@@ -730,34 +729,58 @@
         </div>
     </main>
 
-    <!-- Mobile Bottom Navigation -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white bottom-nav flex justify-around items-center py-3">
-        <a href="../index.html" class="flex flex-col items-center inactive-nav">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 8h-7m4 0v12m0 0l-4-4m4 4l4-4" />
-            </svg>
+  
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2">
+        <a href="./index.html" class="flex flex-col items-center text-black">
+            <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_90_1154" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="31">
+                <rect x="0.5" y="0.5" width="30" height="30" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_90_1154)">
+                <path d="M5.5 5.5L8 10.5H11.75L9.25 5.5H11.75L14.25 10.5H18L15.5 5.5H18L20.5 10.5H24.25L21.75 5.5H25.5C26.1875 5.5 26.776 5.74479 27.2656 6.23438C27.7552 6.72396 28 7.3125 28 8V23C28 23.6875 27.7552 24.276 27.2656 24.7656C26.776 25.2552 26.1875 25.5 25.5 25.5H5.5C4.8125 25.5 4.22396 25.2552 3.73438 24.7656C3.24479 24.276 3 23.6875 3 23V8C3 7.3125 3.24479 6.72396 3.73438 6.23438C4.22396 5.74479 4.8125 5.5 5.5 5.5ZM5.5 13V23H25.5V13H5.5Z" fill="#1C1B1F"/>
+                </g>
+                </svg>
+                
             <span class="text-xs mt-1">Eventos</span>
         </a>
-        <a href="./calendar.html" class="flex flex-col items-center inactive-nav">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+        <a href="./pages/calendar.html" class="flex flex-col items-center text-gray-400">
+            <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_90_1164" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="31">
+                <rect x="0.166626" y="0.5" width="30" height="30" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_90_1164)">
+                <path d="M6.41663 28C5.72913 28 5.14058 27.7552 4.651 27.2656C4.16142 26.776 3.91663 26.1875 3.91663 25.5V8C3.91663 7.3125 4.16142 6.72396 4.651 6.23438C5.14058 5.74479 5.72913 5.5 6.41663 5.5H7.66663V3H10.1666V5.5H20.1666V3H22.6666V5.5H23.9166C24.6041 5.5 25.1927 5.74479 25.6823 6.23438C26.1718 6.72396 26.4166 7.3125 26.4166 8V25.5C26.4166 26.1875 26.1718 26.776 25.6823 27.2656C25.1927 27.7552 24.6041 28 23.9166 28H6.41663ZM6.41663 25.5H23.9166V13H6.41663V25.5ZM6.41663 10.5H23.9166V8H6.41663V10.5ZM15.1666 18C14.8125 18 14.5156 17.8802 14.276 17.6406C14.0364 17.401 13.9166 17.1042 13.9166 16.75C13.9166 16.3958 14.0364 16.099 14.276 15.8594C14.5156 15.6198 14.8125 15.5 15.1666 15.5C15.5208 15.5 15.8177 15.6198 16.0573 15.8594C16.2968 16.099 16.4166 16.3958 16.4166 16.75C16.4166 17.1042 16.2968 17.401 16.0573 17.6406C15.8177 17.8802 15.5208 18 15.1666 18ZM10.1666 18C9.81246 18 9.51558 17.8802 9.276 17.6406C9.03642 17.401 8.91663 17.1042 8.91663 16.75C8.91663 16.3958 9.03642 16.099 9.276 15.8594C9.51558 15.6198 9.81246 15.5 10.1666 15.5C10.5208 15.5 10.8177 15.6198 11.0573 15.8594C11.2968 16.099 11.4166 16.3958 11.4166 16.75C11.4166 17.1042 11.2968 17.401 11.0573 17.6406C10.8177 17.8802 10.5208 18 10.1666 18ZM20.1666 18C19.8125 18 19.5156 17.8802 19.276 17.6406C19.0364 17.401 18.9166 17.1042 18.9166 16.75C18.9166 16.3958 19.0364 16.099 19.276 15.8594C19.5156 15.6198 19.8125 15.5 20.1666 15.5C20.5208 15.5 20.8177 15.6198 21.0573 15.8594C21.2968 16.099 21.4166 16.3958 21.4166 16.75C21.4166 17.1042 21.2968 17.401 21.0573 17.6406C20.8177 17.8802 20.5208 18 20.1666 18ZM15.1666 23C14.8125 23 14.5156 22.8802 14.276 22.6406C14.0364 22.401 13.9166 22.1042 13.9166 21.75C13.9166 21.3958 14.0364 21.099 14.276 20.8594C14.5156 20.6198 14.8125 20.5 15.1666 20.5C15.5208 20.5 15.8177 20.6198 16.0573 20.8594C16.2968 21.099 16.4166 21.3958 16.4166 21.75C16.4166 22.1042 16.2968 22.401 16.0573 22.6406C15.8177 22.8802 15.5208 23 15.1666 23ZM10.1666 23C9.81246 23 9.51558 22.8802 9.276 22.6406C9.03642 22.401 8.91663 22.1042 8.91663 21.75C8.91663 21.3958 9.03642 21.099 9.276 20.8594C9.51558 20.6198 9.81246 20.5 10.1666 20.5C10.5208 20.5 10.8177 20.6198 11.0573 20.8594C11.2968 21.099 11.4166 21.3958 11.4166 21.75C11.4166 22.1042 11.2968 22.401 11.0573 22.6406C10.8177 22.8802 10.5208 23 10.1666 23ZM20.1666 23C19.8125 23 19.5156 22.8802 19.276 22.6406C19.0364 22.401 18.9166 22.1042 18.9166 21.75C18.9166 21.3958 19.0364 21.099 19.276 20.8594C19.5156 20.6198 19.8125 20.5 20.1666 20.5C20.5208 20.5 20.8177 20.6198 21.0573 20.8594C21.2968 21.099 21.4166 21.3958 21.4166 21.75C21.4166 22.1042 21.2968 22.401 21.0573 22.6406C20.8177 22.8802 20.5208 23 20.1666 23Z" fill="#AEB8C3"/>
+                </g>
+                </svg>
+                
             <span class="text-xs mt-1">Calendario</span>
         </a>
-        <a href="./multimedia.html" class="flex flex-col items-center inactive-nav">
-            <svg class="w-6 h-6" xmlns="http://  class="flex flex-col items-center inactive-nav">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+        <a href="./pages/multimedia.html" class="flex flex-col items-center text-gray-400">
+            <svg width="34" height="33" viewBox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_103_968" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="34" height="33">
+                <rect x="0.333374" width="33" height="33" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_103_968)">
+                <path d="M7.20837 28.875C6.45212 28.875 5.80473 28.6057 5.26619 28.0672C4.72764 27.5286 4.45837 26.8813 4.45837 26.125V6.875C4.45837 6.11875 4.72764 5.47135 5.26619 4.93281C5.80473 4.39427 6.45212 4.125 7.20837 4.125H26.4584C27.2146 4.125 27.862 4.39427 28.4006 4.93281C28.9391 5.47135 29.2084 6.11875 29.2084 6.875V26.125C29.2084 26.8813 28.9391 27.5286 28.4006 28.0672C27.862 28.6057 27.2146 28.875 26.4584 28.875H7.20837ZM7.20837 26.125H26.4584V6.875H7.20837V26.125ZM8.58337 23.375H25.0834L19.9271 16.5L15.8021 22L12.7084 17.875L8.58337 23.375Z" fill="#AEB8C3"/>
+                </g>
+                </svg>
+                
             <span class="text-xs mt-1">Multimedia</span>
         </a>
-        <a href="./documents.html" class="flex flex-col items-center active-nav">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-            </svg>
+        <a href="./pages/documents.html" class="flex flex-col items-center text-gray-400">
+            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <mask id="mask0_103_987" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="33">
+                <rect width="33" height="33" fill="#D9D9D9"/>
+                </mask>
+                <g mask="url(#mask0_103_987)">
+                <path d="M5.5 27.5C4.74375 27.5 4.09635 27.2307 3.55781 26.6922C3.01927 26.1536 2.75 25.5063 2.75 24.75V8.25C2.75 7.49375 3.01927 6.84635 3.55781 6.30781C4.09635 5.76927 4.74375 5.5 5.5 5.5H13.75L16.5 8.25H27.5C28.2563 8.25 28.9036 8.51927 29.4422 9.05781C29.9807 9.59635 30.25 10.2438 30.25 11H15.3656L12.6156 8.25H5.5V24.75L8.8 13.75H32.3125L28.7719 25.5406C28.5885 26.1365 28.2505 26.612 27.7578 26.9672C27.2651 27.3224 26.7208 27.5 26.125 27.5H5.5ZM8.3875 24.75H26.125L28.6 16.5H10.8625L8.3875 24.75Z" fill="#AEB8C3"/>
+                </g>
+                </svg>
+                
             <span class="text-xs mt-1">Documentos</span>
         </a>
-    </div>
+    </nav>
     <script>
         // Toggle dropdown menus
         document.getElementById('menuButton').addEventListener('click', function() {
