@@ -7,20 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
-    <!-- Header (using the one you provided) -->
-    <header class="bg-white shadow-sm">
+     <!-- Header -->
+     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
-                <img src="./assets/images/logo-desktop.png" alt="Logo" class="h-8 hidden md:h-10 md:block w-auto object-contain" />
+                <img src="../assets/images/logo-desktop.png" alt="Logo" class="h-8 hidden md:h-10 md:block w-auto object-contain" />
+                <img src="../assets/images/logo-mobile.png" alt="Logo" class="h-8 md:h-10 w-auto md:hidden object-contain" />
             </div>
 
             <!-- Navigation - Desktop -->
             <div class="hidden md:flex items-center space-x-2">
-                <button class="bg-black text-white px-4 py-2 rounded">Eventos</button>
-                <button class="px-4 py-2">Calendario</button>
-                <button class="px-4 py-2">Multimedia</button>
-                <button class="px-4 py-2">Documentos</button>
+                <button class="bg-black text-white px-4 py-2 rounded"><a href="../index.html">Eventos</a></button>
+                <button class="px-4 py-2"><a href="./calendar.html"> Calendario</a></button>
+                <button class="px-4 py-2"><a href="./multimedia.html">Multimedia</a></button>
+                <button class="px-4 py-2"><a href="./documents.html"> Documentos</a></button>
                 <div class="relative ml-4">
                     <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
                     <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
@@ -34,27 +35,31 @@
                     
                     <!-- Dropdown Menu (inicialmente oculto) -->
                     <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
-                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <a href="./edit-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 20.662V19C7 18.4696 7.21071 17.9609 7.58579 17.5858C7.96086 17.2107 8.46957 17 9 17H15C15.5304 17 16.0391 17.2107 16.4142 17.5858C16.7893 17.9609 17 18.4696 17 19V20.662M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                                </svg>
+                                
                             Editar perfil
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
                         <a href="#" class="flex items-center px-4 gap-2 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 17H12.01M9.1001 8.99992C9.34008 8.33855 9.80487 7.78257 10.4132 7.42915C11.0216 7.07574 11.7348 6.94738 12.4282 7.06653C13.1216 7.18567 13.7511 7.54472 14.2066 8.08093C14.6621 8.61714 14.9146 9.29638 14.9201 9.99992C14.9201 11.9999 11.9201 12.9999 11.9201 12.9999M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                                </svg>
+                                
                             Contacto & FAQs
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
                         <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ml-1">
                             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H7M14 15L19 10M19 10L14 5M19 10H7" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                                </svg>
+                                
                             Cerrar sesión
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
+                      
                     </div>
                 </div>
             </div>
@@ -62,7 +67,7 @@
             <!-- Mobile Profile & Menu -->
             <div class="flex md:hidden items-center">
                 <div class="relative mr-4">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <img src="../assets/images/avatar.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
                     <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
                 </div>
                 <div class="relative">
@@ -74,24 +79,28 @@
                     
                     <!-- Mobile Dropdown Menu (inicialmente oculto) -->
                     <div id="mobileDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <a href="./edit-profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 20.662V19C7 18.4696 7.21071 17.9609 7.58579 17.5858C7.96086 17.2107 8.46957 17 9 17H15C15.5304 17 16.0391 17.2107 16.4142 17.5858C16.7893 17.9609 17 18.4696 17 19V20.662M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                                </svg>
+                                
                             Editar perfil
                         </a>
                         <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 17H12.01M9.1001 8.99992C9.34008 8.33855 9.80487 7.78257 10.4132 7.42915C11.0216 7.07574 11.7348 6.94738 12.4282 7.06653C13.1216 7.18567 13.7511 7.54472 14.2066 8.08093C14.6621 8.61714 14.9146 9.29638 14.9201 9.99992C14.9201 11.9999 11.9201 12.9999 11.9201 12.9999M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                                </svg>
+                                
                             Contacto & FAQs
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
                         <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                                
                             Cerrar sesión
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
+                      
                     </div>
                 </div>
             </div>
@@ -116,9 +125,9 @@
                 
                 <!-- Accordion Content -->
                 <div id="accordion-info-personal-content" class="p-4 bg-white">
+                    <!-- Datos personales -->
                     <h3 class="font-semibold text-lg mb-4">Datos personales</h3>
                     
-                    <!-- Form Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <!-- Nombre -->
                         <div>
@@ -152,46 +161,120 @@
                         
                         <!-- Nacimiento -->
                         <div>
-                            <label for="nacimiento" class="block text-sm font-medium text-gray-700 mb-1">Nacimiento</label>
+                            <label for="nacimiento" class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento (edad)</label>
                             <input type="date" id="nacimiento" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                         </div>
                     </div>
                     
                     <!-- Email fields -->
                     <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
                         <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 mb-4">
                         
-                        <label for="email-secundario" class="block text-sm font-medium text-gray-700 mb-1">Email secundario</label>
+                        <label for="email-secundario" class="block text-sm font-medium text-gray-700 mb-1">E-mail secundario (opcional)</label>
                         <input type="email" id="email-secundario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                     </div>
                     
                     <!-- Phone fields -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
-                            <label for="telefono-principal" class="block text-sm font-medium text-gray-700 mb-1">Teléfono principal</label>
+                            <label for="telefono-principal" class="block text-sm font-medium text-gray-700 mb-1">Teléfono de contacto principal</label>
                             <input type="tel" id="telefono-principal" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">Teléfono de contacto habitual</p>
                         </div>
                         
                         <div>
-                            <label for="telefono-secundario" class="block text-sm font-medium text-gray-700 mb-1">Teléfono secundario</label>
+                            <label for="telefono-secundario" class="block text-sm font-medium text-gray-700 mb-1">Teléfono de contacto secundario</label>
                             <input type="tel" id="telefono-secundario" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                         </div>
                     </div>
                     
+                    <!-- Redes sociales -->
+                    <h3 class="font-semibold text-lg mb-4">Redes sociales</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">Instagram</label>
+                            <input type="text" id="instagram" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="tiktok" class="block text-sm font-medium text-gray-700 mb-1">Tik Tok</label>
+                            <input type="text" id="tiktok" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="otro-social" class="block text-sm font-medium text-gray-700 mb-1">Otro (Youtube, Reel, Portfolio...)</label>
+                            <input type="text" id="otro-social" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="otros-social" class="block text-sm font-medium text-gray-700 mb-1">Otros</label>
+                            <input type="text" id="otros-social" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
                     <!-- Emergency Contact -->
-                    <div class="mb-4">
-                        <h4 class="font-semibold mb-3">Contacto de emergencia</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="contacto-nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-                                <input type="text" id="contacto-nombre" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                            </div>
-                            
-                            <div>
-                                <label for="contacto-telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-                                <input type="tel" id="contacto-telefono" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                            </div>
+                    <h3 class="font-semibold text-lg mb-4">Persona de contacto para emergencias</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="contacto-nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                            <input type="text" id="contacto-nombre" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">Persona de contacto en caso de no poder localizarte</p>
+                        </div>
+                        
+                        <div>
+                            <label for="contacto-telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                            <input type="tel" id="contacto-telefono" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="parentesco" class="block text-sm font-medium text-gray-700 mb-1">Parentesco</label>
+                            <input type="text" id="parentesco" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Datos geográficos -->
+                    <h3 class="font-semibold text-lg mb-4">Datos geográficos</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="pais-origen" class="block text-sm font-medium text-gray-700 mb-1">País de origen / nacimiento</label>
+                            <input type="text" id="pais-origen" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">País en el que has crecido o te has criado</p>
+                        </div>
+                        
+                        <div>
+                            <label for="nacionalidad" class="block text-sm font-medium text-gray-700 mb-1">Nacionalidad</label>
+                            <input type="text" id="nacionalidad" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">Según tu DNI/NIE/Pasaporte</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Domicilio habitual -->
+                    <h3 class="font-semibold text-lg mb-4">Domicilio habitual</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="md:col-span-2">
+                            <label for="domicilio-calle" class="block text-sm font-medium text-gray-700 mb-1">Domicilio habitual / calle</label>
+                            <input type="text" id="domicilio-calle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="domicilio-cp" class="block text-sm font-medium text-gray-700 mb-1">Domicilio habitual / código postal</label>
+                            <input type="text" id="domicilio-cp" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="domicilio-ciudad" class="block text-sm font-medium text-gray-700 mb-1">Domicilio habitual / Ciudad</label>
+                            <input type="text" id="domicilio-ciudad" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="domicilio-provincia" class="block text-sm font-medium text-gray-700 mb-1">Domicilio habitual / Provincia</label>
+                            <input type="text" id="domicilio-provincia" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="domicilio-pais" class="block text-sm font-medium text-gray-700 mb-1">Domicilio habitual / País</label>
+                            <input type="text" id="domicilio-pais" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                         </div>
                     </div>
                     
@@ -204,7 +287,7 @@
                 </div>
             </div>
             
-            <!-- Datos administrativos - Collapsed accordion item -->
+            <!-- Datos administrativos -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-datos-admin" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Datos administrativos</span>
@@ -213,12 +296,84 @@
                     </svg>
                 </button>
                 <div id="accordion-datos-admin-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de datos administrativos</p>
+                    <!-- Documentación -->
+                    <h3 class="font-semibold text-lg mb-4">Documentación</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="dni" class="block text-sm font-medium text-gray-700 mb-1">DNI / NIE</label>
+                            <input type="text" id="dni" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="fecha-caducidad-dni" class="block text-sm font-medium text-gray-700 mb-1">Fecha caducidad DNI</label>
+                            <input type="date" id="fecha-caducidad-dni" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="ss" class="block text-sm font-medium text-gray-700 mb-1">Nº afiliación a la Seguridad Social</label>
+                            <input type="text" id="ss" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">Número de SS laboral, el que aparece en las nóminas. NO ES EL DE LA TARJETA SANITARIA</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Cuenta corriente -->
+                    <h3 class="font-semibold text-lg mb-4">Cuenta corriente (opcional)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="entidad-bancaria" class="block text-sm font-medium text-gray-700 mb-1">Entidad bancaria</label>
+                            <input type="text" id="entidad-bancaria" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="cuenta-corriente" class="block text-sm font-medium text-gray-700 mb-1">Cuenta Corriente</label>
+                            <input type="text" id="cuenta-corriente" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="titular-cuenta" class="block text-sm font-medium text-gray-700 mb-1">Titular cuenta bancaria</label>
+                            <input type="text" id="titular-cuenta" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Domicilio fiscal -->
+                    <h3 class="font-semibold text-lg mb-4">Domicilio fiscal / Rellenar solo si es distinto al domicilio habitual</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div class="md:col-span-2">
+                            <label for="fiscal-calle" class="block text-sm font-medium text-gray-700 mb-1">Domicilio fiscal / calle</label>
+                            <input type="text" id="fiscal-calle" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="fiscal-cp" class="block text-sm font-medium text-gray-700 mb-1">Domicilio fiscal / código postal</label>
+                            <input type="text" id="fiscal-cp" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="fiscal-ciudad" class="block text-sm font-medium text-gray-700 mb-1">Domicilio fiscal / Ciudad</label>
+                            <input type="text" id="fiscal-ciudad" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="fiscal-provincia" class="block text-sm font-medium text-gray-700 mb-1">Domicilio fiscal / Provincia</label>
+                            <input type="text" id="fiscal-provincia" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="fiscal-pais" class="block text-sm font-medium text-gray-700 mb-1">Domicilio fiscal / País</label>
+                            <input type="text" id="fiscal-pais" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Datos físicos - Collapsed accordion item -->
+            <!-- Datos físicos -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-datos-fisicos" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Datos físicos</span>
@@ -227,12 +382,155 @@
                     </svg>
                 </button>
                 <div id="accordion-datos-fisicos-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de datos físicos</p>
+                    <!-- Tallas y medidas -->
+                    <h3 class="font-semibold text-lg mb-4">Tallas y medidas</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="altura" class="block text-sm font-medium text-gray-700 mb-1">Altura</label>
+                            <input type="text" id="altura" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="peso" class="block text-sm font-medium text-gray-700 mb-1">Peso</label>
+                            <input type="text" id="peso" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-camisa" class="block text-sm font-medium text-gray-700 mb-1">Talla camisa</label>
+                            <input type="text" id="talla-camisa" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-camiseta" class="block text-sm font-medium text-gray-700 mb-1">Talla camiseta</label>
+                            <input type="text" id="talla-camiseta" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-americana" class="block text-sm font-medium text-gray-700 mb-1">Talla americana</label>
+                            <input type="text" id="talla-americana" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-pantalon" class="block text-sm font-medium text-gray-700 mb-1">Talla pantalón</label>
+                            <input type="text" id="talla-pantalon" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-zapatos" class="block text-sm font-medium text-gray-700 mb-1">Talla zapatos</label>
+                            <input type="text" id="talla-zapatos" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="medida-pecho" class="block text-sm font-medium text-gray-700 mb-1">Medidas contorno pecho</label>
+                            <input type="text" id="medida-pecho" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="medida-cintura" class="block text-sm font-medium text-gray-700 mb-1">Medidas contorno cintura</label>
+                            <input type="text" id="medida-cintura" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="medida-cadera" class="block text-sm font-medium text-gray-700 mb-1">Medidas contorno cadera</label>
+                            <input type="text" id="medida-cadera" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="talla-sujetador-contorno" class="block text-sm font-medium text-gray-700 mb-1">Talla sujetador contorno (mujeres)</label>
+                            <input type="text" id="talla-sujetador-contorno" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="talla-sujetador-copa" class="block text-sm font-medium text-gray-700 mb-1">Talla sujetador copa (mujeres)</label>
+                            <input type="text" id="talla-sujetador-copa" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Otros datos físicos -->
+                    <h3 class="font-semibold text-lg mb-4">Otros datos</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="color-ojos" class="block text-sm font-medium text-gray-700 mb-1">Color de ojos</label>
+                            <input type="text" id="color-ojos" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="color-pelo" class="block text-sm font-medium text-gray-700 mb-1">Color de Pelo</label>
+                            <input type="text" id="color-pelo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="tipo-pelo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Pelo</label>
+                            <input type="text" id="tipo-pelo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="largo-pelo" class="block text-sm font-medium text-gray-700 mb-1">Largo de pelo</label>
+                            <input type="text" id="largo-pelo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="coloracion-pelo" class="block text-sm font-medium text-gray-700 mb-1">Coloración de pelo</label>
+                            <input type="text" id="coloracion-pelo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="piel" class="block text-sm font-medium text-gray-700 mb-1">Piel</label>
+                            <input type="text" id="piel" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="condiciones-piel" class="block text-sm font-medium text-gray-700 mb-1">Condiciones en la piel</label>
+                            <input type="text" id="condiciones-piel" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="info-condiciones-piel" class="block text-sm font-medium text-gray-700 mb-1">Información adicional condiciones en la piel</label>
+                            <textarea id="info-condiciones-piel" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="tatuajes" class="block text-sm font-medium text-gray-700 mb-1">Tatuajes</label>
+                            <input type="text" id="tatuajes" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="info-tatuajes" class="block text-sm font-medium text-gray-700 mb-1">Información adicional tatuajes</label>
+                            <textarea id="info-tatuajes" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="cicatrices" class="block text-sm font-medium text-gray-700 mb-1">Cicatrices / Marcas de nacimiento</label>
+                            <input type="text" id="cicatrices" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="info-cicatrices" class="block text-sm font-medium text-gray-700 mb-1">Información adicional Cicatrices / Marcas de nacimiento</label>
+                            <textarea id="info-cicatrices" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="origen-etnico" class="block text-sm font-medium text-gray-700 mb-1">Origen étnico</label>
+                            <input type="text" id="origen-etnico" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Idiomas - Collapsed accordion item -->
+            <!-- Idiomas -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-idiomas" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Idiomas</span>
@@ -241,12 +539,38 @@
                     </svg>
                 </button>
                 <div id="accordion-idiomas-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de idiomas</p>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div>
+                            <label for="idiomas-nativo" class="block text-sm font-medium text-gray-700 mb-1">Idiomas nativo</label>
+                            <input type="text" id="idiomas-nativo" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="idiomas-alto" class="block text-sm font-medium text-gray-700 mb-1">Idiomas nivel alto/fluido</label>
+                            <input type="text" id="idiomas-alto" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="idiomas-medio" class="block text-sm font-medium text-gray-700 mb-1">Idiomas nivel medio</label>
+                            <input type="text" id="idiomas-medio" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="idiomas-basico" class="block text-sm font-medium text-gray-700 mb-1">Idiomas nivel básico</label>
+                            <input type="text" id="idiomas-basico" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Habilidades - Collapsed accordion item -->
+            <!-- Habilidades -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-habilidades" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Habilidades</span>
@@ -255,12 +579,54 @@
                     </svg>
                 </button>
                 <div id="accordion-habilidades-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de habilidades</p>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div>
+                            <label for="carnet-conducir" class="block text-sm font-medium text-gray-700 mb-1">Carnet de conducir</label>
+                            <input type="text" id="carnet-conducir" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="habilidades-deporte" class="block text-sm font-medium text-gray-700 mb-1">Habilidades de deporte</label>
+                            <textarea id="habilidades-deporte" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="habilidades-baile" class="block text-sm font-medium text-gray-700 mb-1">Habilidades de baile</label>
+                            <textarea id="habilidades-baile" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="musica-instrumentos" class="block text-sm font-medium text-gray-700 mb-1">Música - Instrumentos</label>
+                            <textarea id="musica-instrumentos" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="musica-canto" class="block text-sm font-medium text-gray-700 mb-1">Música - Canto</label>
+                            <textarea id="musica-canto" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="habilidades-artisticas" class="block text-sm font-medium text-gray-700 mb-1">Habilidades artísticas</label>
+                            <textarea id="habilidades-artisticas" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="otras-habilidades" class="block text-sm font-medium text-gray-700 mb-1">Otras habilidades</label>
+                            <textarea id="otras-habilidades" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">Menciona si practicas alguna habilidad que no hayas encontrado en los campos anteriores</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Otros datos - Collapsed accordion item -->
+            <!-- Otros datos -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-otros-datos" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Otros datos</span>
@@ -269,12 +635,71 @@
                     </svg>
                 </button>
                 <div id="accordion-otros-datos-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de otros datos</p>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div>
+                            <label for="alergias" class="block text-sm font-medium text-gray-700 mb-1">Alergías e intolerancias</label>
+                            <textarea id="alergias" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">Coméntanos si tienes alguna alergia o intolerancia (de comida, animales, medicamentos, etc.)</p>
+                        </div>
+                        
+                        <div>
+                            <label for="besos" class="block text-sm font-medium text-gray-700 mb-1">Besos</label>
+                            <textarea id="besos" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">En algunos rodajes puede haber escenas de besos. En estos casos, siempre se avisará con antelación.</p>
+                        </div>
+                        
+                        <div>
+                            <label for="cambio-look" class="block text-sm font-medium text-gray-700 mb-1">Cambio de look</label>
+                            <textarea id="cambio-look" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">¿Estás dispuestx a un cambio de look en caso de ser necesario?</p>
+                        </div>
+                        
+                        <div>
+                            <label for="colaboraciones" class="block text-sm font-medium text-gray-700 mb-1">Colaboraciones</label>
+                            <textarea id="colaboraciones" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">¿Estás dipuestx a participar en proyectos no remunerados o de estudiantes para ampliar tu portfolio y experiencia?</p>
+                        </div>
+                        
+                        <div>
+                            <label for="trabajo" class="block text-sm font-medium text-gray-700 mb-1">¿En qué trabajas? ¿A qué te dedicas?</label>
+                            <textarea id="trabajo" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label for="disponibilidad" class="block text-sm font-medium text-gray-700 mb-1">Disponibilidad y flexibilidad horaria</label>
+                            <textarea id="disponibilidad" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">Cuéntanos si tienes flexibilidad en tu trabajo o estudios. ¿Podrías tener días libres si eres seleccionadx? Ten en cuenta que algunos rodajes se confirman con poca antelación o pueden durar varios días.</p>
+                        </div>
+                        
+                        <div>
+                            <label for="book" class="block text-sm font-medium text-gray-700 mb-1">Book profesional</label>
+                            <textarea id="book" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">¿Cuentas con book o fotos profesionales? En caso de no tenerlas, ¿tienes posibilidad de hacértelas?</p>
+                        </div>
+                        
+                        <div>
+                            <label for="otras-agencias" class="block text-sm font-medium text-gray-700 mb-1">Otras agencias</label>
+                            <textarea id="otras-agencias" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">Indica si estás apuntado en otras agencias y en cuáles. También si estás apuntado en alguna página online para recibir castings.</p>
+                        </div>
+                        
+                        <div>
+                            <label for="familiar-amigo" class="block text-sm font-medium text-gray-700 mb-1">Algún familiar / amigo / burbuja</label>
+                            <textarea id="familiar-amigo" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">La preferencia por "grupos de amigos reales", "familias reales" y "parejas reales" se ha vuelto muy común en los castings. Haznos saber si tienes alguien cercano con quien te gustaría rodar. Necesitaremos fotografías en las que salgáis juntos.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Experiencia - Collapsed accordion item -->
+            <!-- Experiencia -->
             <div class="border border-gray-200 rounded-md mb-4">
                 <button id="accordion-experiencia" class="w-full flex justify-between items-center p-4 bg-white text-gray-900 focus:outline-none">
                     <span class="font-medium">Experiencia</span>
@@ -283,13 +708,53 @@
                     </svg>
                 </button>
                 <div id="accordion-experiencia-content" class="hidden p-4 bg-white">
-                    <!-- Content would go here -->
-                    <p>Contenido de experiencia</p>
+                    <div class="grid grid-cols-1 gap-4 mb-6">
+                        <div>
+                            <label for="experiencia" class="block text-sm font-medium text-gray-700 mb-1">Experiencia</label>
+                            <textarea id="experiencia" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                            <p class="text-xs text-gray-500 mt-1">¿Tienes experiencia en el sector? Detalla tus trabajos y menciona dónde se han publicado o difundido.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                            Guardar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Mobile Bottom Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white bottom-nav flex justify-around items-center py-3">
+        <a href="../index.html" class="flex flex-col items-center inactive-nav">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1M19 8h-7m4 0v12m0 0l-4-4m4 4l4-4" />
+            </svg>
+            <span class="text-xs mt-1">Eventos</span>
+        </a>
+        <a href="./calendar.html" class="flex flex-col items-center inactive-nav">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs mt-1">Calendario</span>
+        </a>
+        <a href="./multimedia.html" class="flex flex-col items-center inactive-nav">
+            <svg class="w-6 h-6" xmlns="http://  class="flex flex-col items-center inactive-nav">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs mt-1">Multimedia</span>
+        </a>
+        <a href="./documents.html" class="flex flex-col items-center active-nav">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+            <span class="text-xs mt-1">Documentos</span>
+        </a>
+    </div>
     <script>
         // Toggle dropdown menus
         document.getElementById('menuButton').addEventListener('click', function() {

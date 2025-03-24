@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRRORED - Multimedia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f2f4;
+        }
+        
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .dropdown.active {
+            display: block;
+        }
+        
+        .nav-item.active {
+            background-color: #000;
+            color: white;
+        }
+        
+        .image-container {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .three-dots {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #000;
+            margin: 1px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="../assets/images/logo-desktop.png" alt="Logo" class="h-8 hidden md:h-10 md:block w-auto object-contain" />
+                <img src="../assets/images/logo-mobile.png" alt="Logo" class="h-8 md:h-10 w-auto md:hidden object-contain" />
+            </div>
+
+            <!-- Navigation - Desktop -->
+            <div class="hidden md:flex items-center space-x-2">
+                <button class="bg-black text-white px-4 py-2 rounded"><a href="../index.html">Eventos</a></button>
+                <button class="px-4 py-2"><a href="./calendar.html"> Calendario</a></button>
+                <button class="px-4 py-2"><a href="./multimedia.html">Multimedia</a></button>
+                <button class="px-4 py-2"><a href="./documents.html"> Documentos</a></button>
+                <div class="relative ml-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                </div>
+                <div class="relative">
+                    <button id="menuButton" class="ml-2 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Menu (inicialmente oculto) -->
+                    <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
+                        <a href="./edit-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 20.662V19C7 18.4696 7.21071 17.9609 7.58579 17.5858C7.96086 17.2107 8.46957 17 9 17H15C15.5304 17 16.0391 17.2107 16.4142 17.5858C16.7893 17.9609 17 18.4696 17 19V20.662M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            Editar perfil
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" class="flex items-center px-4 gap-2 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 17H12.01M9.1001 8.99992C9.34008 8.33855 9.80487 7.78257 10.4132 7.42915C11.0216 7.07574 11.7348 6.94738 12.4282 7.06653C13.1216 7.18567 13.7511 7.54472 14.2066 8.08093C14.6621 8.61714 14.9146 9.29638 14.9201 9.99992C14.9201 11.9999 11.9201 12.9999 11.9201 12.9999M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            Contacto & FAQs
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ml-1">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H7M14 15L19 10M19 10L14 5M19 10H7" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            Cerrar sesión
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                      
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Profile & Menu -->
+            <div class="flex md:hidden items-center">
+                <div class="relative mr-4">
+                    <img src="../assets/images/avatar.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                </div>
+                <div class="relative">
+                    <button id="mobileMenuButton" class="focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                        </svg>
+                    </button>
+                    
+                    <!-- Mobile Dropdown Menu (inicialmente oculto) -->
+                    <div id="mobileDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
+                        <a href="./edit-profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 20.662V19C7 18.4696 7.21071 17.9609 7.58579 17.5858C7.96086 17.2107 8.46957 17 9 17H15C15.5304 17 16.0391 17.2107 16.4142 17.5858C16.7893 17.9609 17 18.4696 17 19V20.662M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            Editar perfil
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 17H12.01M9.1001 8.99992C9.34008 8.33855 9.80487 7.78257 10.4132 7.42915C11.0216 7.07574 11.7348 6.94738 12.4282 7.06653C13.1216 7.18567 13.7511 7.54472 14.2066 8.08093C14.6621 8.61714 14.9146 9.29638 14.9201 9.99992C14.9201 11.9999 11.9201 12.9999 11.9201 12.9999M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                
+                            Contacto & FAQs
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                                
+                            Cerrar sesión
+                        </a>
+                        <div class="border-t border-gray-100 my-1"></div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="px-6 py-4">
+        <h2 class="text-3xl font-bold mb-6">Multimedia</h2>
+        
+        <!-- Upload Section -->
+        <div class="bg-white rounded-lg p-8 mb-6 flex flex-col items-center justify-center border border-gray-200">
+            <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Añadir nuevos archivos</h3>
+            <button class="bg-gray-900 text-white px-6 py-2 rounded-md">Seleccionar archivos</button>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="flex justify-end mb-6">
+            <div class="relative inline-block">
+                <button class="bg-white border border-gray-300 rounded-md px-4 py-2 flex items-center">
+                    Filtrar por carpeta
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Gallery Section -->
+        <div class="bg-white rounded-lg p-6 border border-gray-200">
+            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
+                <!-- Image 1 with dropdown visible -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 2 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 3 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 4 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 5 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 6 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 7 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 8 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 9 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional images for second row -->
+                <!-- Image 10 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 11 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 12 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 13 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 14 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 15 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 16 -->
+                <div class="relative">
+                    <div class="image-container">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-agF2WGzN06SheK8kn7LL6unBPymCuu.png" alt="Image">
+                    </div>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-sm truncate">Lorem Ipsum Dolor...</p>
+                        <button class="dropdown-toggle focus:outline-none" onclick="toggleDropdown(this)">
+                            <div class="three-dots">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </button>
+                        <div class="dropdown bg-white shadow-lg rounded-md w-36 absolute right-0 mt-2 z-10">
+                            <ul>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Ver</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 border-b border-gray-200">Descargar</li>
+                                <li class="px-4 py-2 hover:bg-gray-100 text-red-500">Borrar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Mobile Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2">
+        <a href="#" class="flex flex-col items-center p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs text-gray-400">Eventos</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs text-gray-400">Calendario</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs font-medium">Multimedia</span>
+        </a>
+        <a href="#" class="flex flex-col items-center p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span class="text-xs text-gray-400">Documentos</span>
+        </a>
+    </nav>
+    
+    <!-- JavaScript for dropdown functionality -->
+    <script>
+        // Close all dropdowns
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+        
+        // Toggle dropdown
+        function toggleDropdown(button) {
+            // Close all other dropdowns first
+            closeAllDropdowns();
+            
+            // Toggle the clicked dropdown
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('active');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+            
+            // Prevent the click from propagating to the document
+            event.stopPropagation();
+        }
+    </script>
+</body>
+</html>
