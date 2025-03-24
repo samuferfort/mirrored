@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooting Callab Johan Falcon | MIRRORED</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#f8f8f8',
+                        accent: '#e10000',
+                        success: '#089e6c',
+                        danger: '#e10000'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 4px;
+        }
+        .status-dot.active {
+            background-color: #4CAF50;
+        }
+        .status-dot.closed {
+            background-color: #9e9e9e;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 pb-16 md:pb-0">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold tracking-tighter md:text-3xl">
+                    <span class="hidden md:inline">MIRRORED</span>
+                    <span class="md:hidden">RR</span>
+                    <sup class="text-sm">®</sup>
+                </h1>
+            </div>
+
+            <!-- Navigation - Desktop -->
+            <div class="hidden md:flex items-center space-x-2">
+                <button class="bg-black text-white px-4 py-2 rounded">Eventos</button>
+                <button class="px-4 py-2">Calendario</button>
+                <button class="px-4 py-2">Multimedia</button>
+                <button class="px-4 py-2">Documentos</button>
+                <div class="relative ml-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                </div>
+                <button class="ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Profile & Menu -->
+            <div class="flex md:hidden items-center">
+                <div class="relative mr-4">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                </div>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Back button and Title -->
+        <div class="flex items-center mb-6">
+            <a href="../index.html" class="text-black mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </a>
+            <h1 class="text-2xl md:text-3xl font-bold">Shooting Callab Johan Falcon</h1>
+        </div>
+
+        <!-- Event Info Box -->
+        <div class="bg-white rounded-lg shadow p-4 md:p-6 mb-6 ">
+            <div class="grid grid-cols-1 gap-1 mb-4">
+                <div><span class="text-gray-600">Campaña: </span>"HEINZ FAMILY 2025"</div>
+                <div><span class="text-gray-600">Productora: </span>The Production Club</div>
+                <div><span class="text-gray-600">Localización rodaje: </span>Barcelona</div>
+                <div><span class="text-gray-600">Tipo producto: </span>Alimentación</div>
+            </div>
+
+            <!-- Accept/Reject Buttons -->
+            <div class="flex flex-col md:flex-row  md:justify-end  space-y-3 md:space-y-0 md:space-x-3 mt-4">
+                <button class="md:w-40 py-3 px-4 bg-white text-green-700 border-green-700 border rounded-md text-center">Aceptar convocatoria</button>
+                <button class="md:w-40 py-3 px-4 border border-red-600 text-red-600 rounded-md border text-center">Rechazar convocatoria</button>
+            </div>
+        </div>
+
+        <!-- Job Details Section -->
+        <div class="bg-white rounded-lg shadow p-4 md:p-6">
+            <h2 class="text-2xl font-bold mb-4">Trabajo</h2>
+            
+            <div class="space-y-3 mb-4">
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-2 flex-shrink-0">📅</span>
+                    <span>Fecha: Martes 18 de febrero</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-2 flex-shrink-0">⏰</span>
+                    <span>Hora: 17:30h</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-2 flex-shrink-0">📍</span>
+                    <span>Ubicación: <a href="#" class="underline">Carrer de Roger, 25, 3D, 08028</a>. Estación de metro Badal</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-blue-500 mr-2 flex-shrink-0">👕</span>
+                    <span>Vestuario: Camiseta y camisa básicas, jeans o pantalón de tela. Si tienes americana, genial. De calzado, si puedes, lleva unas botas y otro más elegante (pero no es obligatorio).</span>
+                </div>
+            </div>
+
+            <!-- Moodboard Link -->
+            <div class="mt-4">
+                <a href="#" class="text-gray-600 underline">Moodboard de la sesión</a>
+            </div>
+        </div>
+    </main>
+
+  
+</body>
+</html> 
