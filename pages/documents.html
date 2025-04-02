@@ -3,14 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRRORED - Documentos</title>
+    <title>MIRRORED</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#f8f8f8',
+                        accent: '#e10000',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f5f5f5;
         }
         .document-row {
             transition: all 0.2s ease;
@@ -29,7 +42,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="bg-gray-100 pb-16 md:pb-0">
    <!-- Header -->
    <header class="">
     <div class="max-w-[95%] xl:max-w-[90%] mx-auto px-6 py-4 flex justify-between items-center">
