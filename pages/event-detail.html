@@ -24,6 +24,30 @@
         .status-dot.closed {
             background-color: #9e9e9e;
         }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            padding: 0;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            max-height: 2000px;
+            padding: 0 1rem 1.5rem 1rem;
+            opacity: 1;
+        }
+        @media (min-width: 768px) {
+            .accordion-content.open {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+        }
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-open .accordion-arrow {
+            transform: rotate(180deg);
+        }
     </style>
     <script>
         tailwind.config = {
@@ -146,60 +170,492 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-[95%] xl:max-w-[90%] mx-auto px-6 py-6">
-        <!-- Back button and Title -->
-        <div class="flex items-center mb-6">
+    <main class="md:max-w-[95%] md:xl:max-w-[90%] md:mx-auto">
+        <!-- Back button and Title - keep margins -->
+        <div class="px-6 py-6 flex items-center mb-6">
             <a href="../index.html" class="text-black mr-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 14L4 9M4 9L9 4M4 9H16C17.0609 9 18.0783 9.42143 18.8284 10.1716C19.5786 10.9217 20 11.9391 20 13V20" stroke="#09090B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    
+                </svg>
             </a>
             <h1 class="text-2xl md:text-3xl font-bold">Shooting Callab Johan Falcon</h1>
         </div>
 
-        <!-- Event Info Box -->
-        <div class="bg-white rounded-lg shadow p-4 md:p-6 mb-6 flex flex-col md:flex-row justify-between md:items-center ">
-            <div class="grid grid-cols-1 gap-1 mb-4">
-                <div><span class="text-gray-600">Campaña: </span>"HEINZ FAMILY 2025"</div>
-                <div><span class="text-gray-600">Productora: </span>The Production Club</div>
-                <div><span class="text-gray-600">Localización rodaje: </span>Barcelona</div>
-                <div><span class="text-gray-600">Tipo producto: </span>Alimentación</div>
-            </div>
-        
-            <!-- Accept/Reject Buttons -->
-            <div class="  flex gap-3 flex-col sm:flex-row">
-                <button class="px-4 py-2 bg-white h-10  hover:bg-green-100 text-green-700 border border-green-600 rounded-md text-center">Aceptar convocatoria</button>
-                <button class="px-4 py-2 bg-white h-10  hover:bg-red-50 text-red-600 border border-red-600 rounded-md text-center">Rechazar convocatoria</button>
-            </div>
-        </div>
-
-        <!-- Job Details Section -->
-        <div class="bg-white rounded-lg shadow p-4 md:p-6">
-            <h2 class="text-2xl font-bold mb-4">Trabajo</h2>
+        <!-- Content wrapper - remove all margins on mobile -->
+        <div class="md:px-6">
+            <!-- Event Info Box -->
+            <div class="bg-white shadow p-4 md:p-6 mb-6 flex flex-col md:flex-row justify-between md:items-center">
+                <div class="grid grid-cols-1 gap-1 mb-4">
+                    <div><span class="text-gray-600">Campaña: </span>"HEINZ FAMILY 2025"</div>
+                    <div><span class="text-gray-600">Productora: </span>The Production Club</div>
+                    <div><span class="text-gray-600">Localización rodaje: </span>Barcelona</div>
+                    <div><span class="text-gray-600">Tipo producto: </span>Alimentación</div>
+                </div>
             
-            <div class="space-y-3 mb-4">
-                <div class="flex items-start">
-                    <span class="text-red-500 mr-2 flex-shrink-0">📅</span>
-                    <span>Fecha: Martes 18 de febrero</span>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-red-500 mr-2 flex-shrink-0">⏰</span>
-                    <span>Hora: 17:30h</span>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-red-500 mr-2 flex-shrink-0">📍</span>
-                    <span>Ubicación: <a href="#" class="underline">Carrer de Roger, 25, 3D, 08028</a>. Estación de metro Badal</span>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-blue-500 mr-2 flex-shrink-0">👕</span>
-                    <span>Vestuario: Camiseta y camisa básicas, jeans o pantalón de tela. Si tienes americana, genial. De calzado, si puedes, lleva unas botas y otro más elegante (pero no es obligatorio).</span>
+                <!-- Accept/Reject Buttons -->
+                <div class="  flex gap-3 flex-col sm:flex-row">
+                    <button class="px-4 py-2 bg-white h-10  hover:bg-green-100 text-green-700 border border-green-600 rounded-md text-center">Aceptar convocatoria</button>
+                    <button class="px-4 py-2 bg-white h-10  hover:bg-red-50 text-red-600 border border-red-600 rounded-md text-center">Rechazar convocatoria</button>
                 </div>
             </div>
 
-            <!-- Moodboard Link -->
-            <div class="mt-4">
-                <a href="#" class="text-gray-600 underline">Moodboard de la sesión</a>
+            <!-- Enterprise Section with Image -->
+            <div class="flex flex-col md:flex-row gap-6 mt-6">
+                <!-- Left column - Enterprise text -->
+                <div class="bg-white shadow p-4 md:p-6 w-full md:w-1/2">
+                    <h2 class="text-2xl font-bold mb-4">Enterprise</h2>
+                    
+                    <div class="space-y-3">
+                        <p>Proyecto para ENTERPRISE, se rueda en Barcelona del 23 al 30 de marzo. Todo el talent tiene que ser LOCAL en BARCELONA, o pillar no cuesta nada tu alojamiento.</p>
+                        
+                        <p>Hay casting presencial el viernes 7 y el lunes 10, dependiendo del personaje. También hay opción de presentar selfitape.</p>
+                    </div>
+                </div>
+                
+                <!-- Right column - Single image -->
+                <div class="bg-white shadow p-4 md:p-6 w-full md:w-1/2">
+                    <div class="relative h-full">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image%20%281%29-MFbUqw1n8SXUXHtuPmDM3VKzMpefTy.png" alt="Actor portraits" class="w-full h-full object-cover rounded-md">
+                        <!-- Purple dot indicator -->
+                      
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dates Section -->
+            <div class="mt-6 bg-white shadow p-4 md:p-6">
+                <h2 class="text-2xl font-bold mb-4">¿Cuáles son las fechas?</h2>
+                
+                <div class="space-y-4">
+                    <!-- Casting 1 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Casting
+                        </div>
+                        <div class="mt-2">Martes 18/02/2025 - Jueves 21/03/2025</div>
+                        <div class="text-gray-600 mt-1">Presencial en Barcelona o por selftape</div>
+                    </div>
+                    
+                    <!-- Casting 2 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Casting
+                        </div>
+                        <div class="mt-2">Martes 18/02/2025</div>
+                        <div class="text-gray-600 mt-1">Presencial en Barcelona o por selftape</div>
+                    </div>
+                    
+                    <!-- Callback 1 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Callback
+                        </div>
+                        <div class="mt-2">Martes 18/02/2025</div>
+                    </div>
+                    
+                    <!-- Callback 2 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Callback
+                        </div>
+                        <div class="mt-2">Martes 18/02/2025</div>
+                    </div>
+                    
+                    <!-- Fitting -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Fitting
+                        </div>
+                        <div class="mt-2">Martes 21 Mar 2025 - Martes 24 Mar 2025</div>
+                        <div class="text-gray-600 mt-1">Día definitivo TBC</div>
+                    </div>
+                    
+                    <!-- Rodaje -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center gap-2 font-semibold">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            Rodaje
+                        </div>
+                        <div class="mt-2">Martes 23 Mar 2025 - Martes 30 Mar 2025</div>
+                        <div class="text-gray-600 mt-1">Día/s definitivos TBC</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Casting Information Accordion -->
+            <div class="mt-6 bg-white rounded-none md:rounded-lg shadow" id="casting-accordion">
+                <!-- Accordion Header -->
+                <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer" id="accordion-header">
+                    <h2 class="text-2xl font-bold">Información del casting</h2>
+                    <svg class="w-6 h-6 accordion-arrow transform transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Accordion Content -->
+                <div class="accordion-content text-[#71717A]">
+                    <div class="space-y-6">
+                        <!-- In-person casting section -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-600 mb-3">CASTING PRESENCIAL EN BARCELONA:</h3>
+                            <p class="mb-4">Cada personaje tiene que acudir en su día y horario de casting.</p>
+                            
+                            <p class="mb-2">PADRES y MADRES: Viernes 7 por la mañana</p>
+                            <p class="mb-1">CASTING LINK PADRES y MADRES: <a href="#" class="font-medium">REGISTRO PRESENCIAL</a></p>
+                            <p class="mb-4 text-gray-600">Es imprescindible que rellenes este formulario.</p>
+                            
+                            <p class="mb-2">RESTO DE PERSONAJES: Lunes 10</p>
+                            <p class="mb-1">CASTING LINK Resto de personajes: <a href="#" class="font-medium">REGISTRO PRESENCIAL</a></p>
+                            <p class="mb-4 text-gray-600">Es imprescindible que rellenes este formulario.</p>
+                        </div>
+                        
+                        <!-- Casting location section -->
+                        <div>
+                            <p class="font-semibold mb-2">DIRECCIÓN CASTING: CASTING & CO</p>
+                            <p class="mb-2">Calle de Bismarck, 3, 08024 Barcelona</p>
+                            <p><a href="https://goo.gl/maps/U6nNKWx9UNs5YkZL8" class="underline" target="_blank">https://goo.gl/maps/U6nNKWx9UNs5YkZL8</a></p>
+                        </div>
+                        
+                        <!-- Self-tape section -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-600 mb-3">CASTING ONLINE SELFTAPE:</h3>
+                            <p class="mb-3">Para enviar los selftapes, sigue las instrucciones que encontrarás en el enlace:</p>
+                            <p class="mb-2"><a href="#" class="font-medium underline">>>>INDICACIONES<<</a></p>
+                            <p class="mb-2"><a href="#" class="font-medium  underline">>>LINK SELFTAPE REGISTRO Y CARGA DE ARCHIVOS<<</a></p>
+                            <p class="text-gray-600">Deadline: Domingo 9 de marzo a las 15:00h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roles Accordion -->
+            <div class="mt-6 bg-white rounded-none md:rounded-lg shadow" id="roles-accordion">
+                <!-- Accordion Header -->
+                <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer" id="roles-header">
+                    <h2 class="text-2xl font-bold">¿Qué están buscando?</h2>
+                    <svg class="w-6 h-6 accordion-arrow transform transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Accordion Content -->
+                <div class="accordion-content">
+                    <div class="space-y-6">
+                        <!-- Cards Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Card 1 -->
+                            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="text-[#71717A]">Protagonista</span>
+                                </div>
+                                <p class="text-black font-medium mb-2">Dad</p>
+                                <p class="text-sm text-[#71717A]">Abierto a familias reales mixed race se refiere a padre, madre con hijo o hija o ambos // padre con hijo o hija o ambos // madre con hijo o hija o ambos</p>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="text-[#71717A]">Protagonista</span>
+                                </div>
+                                <p class="text-black font-medium mb-2">Dad</p>
+                                <p class="text-sm text-[#71717A]">Mujer 40-50 años, cualquier etnia, abierta a familias reales mixed race.</p>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="text-[#71717A]">Protagonista</span>
+                                </div>
+                                <p class="text-black font-medium mb-2">Dad</p>
+                                <p class="text-sm text-[#71717A]">Mujer 40-50 años</p>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <span class="text-[#71717A]">Protagonista</span>
+                                </div>
+                                <p class="text-black font-medium mb-2">Dad</p>
+                                <p class="text-sm text-[#71717A]">Abierto a familias reales mixed race se refiere a padre, madre con hijo o hija o ambos // padre con hijo o hija o ambos // madre con hijo o hija o ambos</p>
+                            </div>
+                        </div>
+
+                        <p class="text-[#71717A]">Abierto a familias reales mixed race se refiere a padre, madre con hijo o hija o ambos // padre con hijo o hija o ambos // madre con hijo o hija o ambos</p>
+                        
+                        <p class="font-medium mb-4">IMPORTANTE, SOLO TALENT CON EXPERIENCIA, IDEALMENTE ACTORES TAMBIÉN PARA LA FAMILIA. SI LOS PADRES NO HAN HECHO JAMÁS NADA, NO HACE FALTA NI QUE SE PRESENTEN.</p>
+                        
+                        <p class="mb-4">NOTAS GENERALES: Estamos buscando un elenco verdaderamente multinacional, combinando actores profesionales con agentes reales de Enterprise para crear interpretaciones que se sientan orgánicas, cautivadoras y llenas de personalidad. Queremos dejar espacio para la improvisación, permitiendo que los actores y los agentes interactúen de manera natural y con un toque humorístico. Abiertos a familias reales.</p>
+                        
+                        <p class="mb-4">Estos roles tienen casting presencial el viernes por la tarde si vienen con familia o por la mañana si vienen solos.</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-medium">1- WEATHER OR NOT DAD (PRINCIPAL, SPEAKING ROLE)</p>
+                                <p>Hombre 40-50 años, cualquier etnia, con inglés nativo y acento americano. Abierto a familias reales mixed race (padre, madre, hijo e hija).</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">2- WEATHER OR NOT MOM (PRINCIPAL)</p>
+                                <p>Mujer 40-50 años, cualquier etnia, abierta a familias reales mixed race.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">3- REPLACEMENT DAD (PRINCIPAL)</p>
+                                <p>Hombre 40-50 años, cualquier etnia, más joven que WEATHER OR NOT DAD, sobreprotector.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">4- REPLACEMENT MOM (PRINCIPAL)</p>
+                                <p>Mujer 40-50 años, cualquier etnia, más joven que WEATHER OR NOT DAD, sobreprotectora.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">5- WEATHER OR NOT TEENAGE SON</p>
+                                <p>Niño de 10-14 años, mixed race, abierto a familias reales mixed race.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">6- WEATHER OR NOT TEENAGE DAUGHTER</p>
+                                <p>Niña de 14-16 años, mixed race, abierta a familias reales mixed race.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">7- DOG MOM 1 (PRINCIPAL)</p>
+                                <p>Mujer 30-50 años, cualquier etnia. Abierto a familias reales mixed race (dos madres y un/a hijo/a).</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">8- DOG MOM 2 (PRINCIPAL)</p>
+                                <p>Mujer 30-50 años, cualquier etnia. Abierto a familias reales mixed race (dos madres y un/a hijo/a).</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">9- LOST AND FOUND CHILD</p>
+                                <p>Niño o niña de 7-10 años, cualquier etnia, más travieso/a y menos tierno/a. Abierto a familias.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">10- DOG CHILD</p>
+                                <p>Niño o niña de 10-16 años, mixed race. Abierto a familias (dos madres).</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">11- REPLACEMENT CHILD</p>
+                                <p>Niño o niña de 6-10 años, cualquier etnia. Abierto a familias reales (padre, madre, hijo o hija).</p>
+                            </div>
+                        </div>
+
+                        <p class="mt-6 mb-4">Estos roles tienen casting presencial el lunes:</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-medium">12- HIPSTER MAN (PRINCIPAL)</p>
+                                <p>Hombre de 20-30 años, caucásico, con look alemán. Hipster, peinado cool y barba. Excéntrico.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">13- MECHANIC (PRINCIPAL, SPEAKING ROLE)</p>
+                                <p>Hombre de 40-60 años, cualquier etnia. Debe tener un nivel de inglés nativo y acento americano. Constitución interesante: o muy corpulento o alto y delgado. Rudo y divertido.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">14- PRODUCER (PRINCIPAL, SPEAKING ROLE)</p>
+                                <p>Hombre de 35-50 años, caucásico. Debe tener un nivel de inglés nativo y acento americano. Figura de autoridad. Estrés extremo, puede ser un poco desaliñado. Referencias: Adrien Brody o Jesse Plemons.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">15- 1st AD (PRINCIPAL)</p>
+                                <p>Mujer de 30-45 años, cualquier etnia. Referencias: Maya Rudolph, Kristen Wiig, Aubrey Plaza.</p>
+                            </div>
+
+                            <div>
+                                <p class="font-medium">16- HIPSTER WOMAN (FEATURED EXTRA)</p>
+                                <p>Mujer de 20-30 años, caucásica, con look alemán, hipster y peinado cool.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarifas Accordion -->
+            <div class="mt-6 bg-white rounded-none md:rounded-lg shadow" id="tarifas-accordion">
+                <!-- Accordion Header -->
+                <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer" id="tarifas-header">
+                    <h2 class="text-2xl font-bold">Tarifas</h2>
+                    <svg class="w-6 h-6 accordion-arrow transform transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Accordion Content -->
+                <div class="accordion-content">
+                    <!-- Daily Fee Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <!-- Daily Fee Cards -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Daily Fee Principal</span>
+                            </div>
+                            <p class="text-xl font-semibold mb-1">700€</p>
+                            <p class="text-sm text-gray-600">Tarifa día</p>
+                        </div>
+
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Daily Fee Principal</span>
+                            </div>
+                            <p class="text-xl font-semibold mb-1">700€</p>
+                            <p class="text-sm text-gray-600">Tarifa día</p>
+                        </div>
+
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 17L12 22L22 17" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12L12 17L22 12" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Daily Fee Principal</span>
+                            </div>
+                            <p class="text-xl font-semibold mb-1">700€</p>
+                            <p class="text-sm text-gray-600">Tarifa día</p>
+                        </div>
+                    </div>
+
+                    <!-- Descripción de tarifas -->
+                    <div class="space-y-4">
+                        <h3 class="font-semibold text-lg">Descripción de tarifas</h3>
+                        <p>Todas las tarifas son en bruto y se les descontará la comisión de agencia (20%) y la retención de IRPF.</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Callback: 30€ para los no seleccionados</li>
+                            <li>Fitting: Incluido en tarifa hasta 2h y después 30€</li>
+                            <li>Horas jornada: 8h**+1h</li>
+                            <li>Hora extra: Según convenio</li>
+                        </ul>
+                        <p class="text-sm text-gray-600 mt-4">**La tarifa de Daily Fee no contempla las horas no efectivas de trabajo según convenio, siendo las mismas 1 hora de procesos/makeup, 1 hora de comidas y 90 mins tiempo de traslado en caso de que fuesen necesarios.</p>
+                    </div>
+
+                    <!-- Descripción derechos -->
+                    <div class="mt-8 space-y-4">
+                        <h3 class="font-semibold text-lg">Descripción derechos</h3>
+                        <p>Todas las tarifas son en bruto y se les descontará la comisión de agencia (20%) y la retención de IRPF.</p>
+                        <p class="italic">*Los derechos no están garantizados, se pagarán al talento reconocible en el montaje final una vez que se emita la campaña.</p>
+                        <p class="italic">**A causa de posibles cambios de guión, algunos roles pueden también cambiar de categoría. Por esta razón, preguntarán a todo aquél que se presente al casting si aceptaría todos los roles / categoría.</p>
+                        
+                        <div class="space-y-2">
+                            <p><strong>MEDIOS:</strong> All forms of broadcast and non-broadcast media now known or hereafter devised, including but not limited to Network, Spot, Cable TV (both free & pay), Theatrical (including home video), Interactive, Industrial, all Electronic and Social Media (includes Internet), any Editorial or PR use. All Print Media (Stills), now known or hereafter devised, including traditional print, OOH, POS, collateral & electronic media, for [2] year date of first use. Any stills pulled from motion shoot are covered in the buyout. All materials derived from above-entitled shoot.</p>
+                            <p><strong>TERRITORIO:</strong> North America, including the United States, its territories and possessions, Mexico and Canada, except for the Internet, which is worldwide.</p>
+                            <p><strong>DURACIÓN:</strong> 2 years from first airdate (tentatively scheduled for October 2025)</p>
+                            <p><strong>EXCLUSIVIDAD PARA OCP:</strong> All dermatology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dummy Content Section -->
+            <div class="my-6 bg-white rounded-none md:rounded-lg shadow" id="dummy-accordion">
+                <!-- Accordion Header -->
+                <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer" id="dummy-header">
+                    <h2 class="text-2xl font-bold">Contenido adicional</h2>
+                    <svg class="w-6 h-6 accordion-arrow transform transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Accordion Content -->
+                <div class="accordion-content">
+                    <div class="space-y-6">
+                        <div class="prose max-w-none">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h3 class="font-semibold mb-2">Sección 1</h3>
+                                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h3 class="font-semibold mb-2">Sección 2</h3>
+                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <h3 class="font-semibold text-lg">Información adicional</h3>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</li>
+                                    <li>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</li>
+                                    <li>Consectetur, adipisci velit, sed quia non numquam eius modi tempora</li>
+                                    <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse</li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                                <p class="italic text-gray-600">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -223,7 +679,7 @@
             <rect x="0.166626" y="0.5" width="30" height="30" fill="#D9D9D9"/>
             </mask>
             <g mask="url(#mask0_90_1164)">
-            <path d="M6.41663 28C5.72913 28 5.14058 27.7552 4.651 27.2656C4.16142 26.776 3.91663 26.1875 3.91663 25.5V8C3.91663 7.3125 4.16142 6.72396 4.651 6.23438C5.14058 5.74479 5.72913 5.5 6.41663 5.5H7.66663V3H10.1666V5.5H20.1666V3H22.6666V5.5H23.9166C24.6041 5.5 25.1927 5.74479 25.6823 6.23438C26.1718 6.72396 26.4166 7.3125 26.4166 8V25.5C26.4166 26.1875 26.1718 26.776 25.6823 27.2656C25.1927 27.7552 24.6041 28 23.9166 28H6.41663ZM6.41663 25.5H23.9166V13H6.41663V25.5ZM6.41663 10.5H23.9166V8H6.41663V10.5ZM15.1666 18C14.8125 18 14.5156 17.8802 14.276 17.6406C14.0364 17.401 13.9166 17.1042 13.9166 16.75C13.9166 16.3958 14.0364 16.099 14.276 15.8594C14.5156 15.6198 14.8125 15.5 15.1666 15.5C15.5208 15.5 15.8177 15.6198 16.0573 15.8594C16.2968 16.099 16.4166 16.3958 16.4166 16.75C16.4166 17.1042 16.2968 17.401 16.0573 17.6406C15.8177 17.8802 15.5208 18 15.1666 18ZM10.1666 18C9.81246 18 9.51558 17.8802 9.276 17.6406C9.03642 17.401 8.91663 17.1042 8.91663 16.75C8.91663 16.3958 9.03642 16.099 9.276 15.8594C9.51558 15.6198 9.81246 15.5 10.1666 15.5C10.5208 15.5 10.8177 15.6198 11.0573 15.8594C11.2968 16.099 11.4166 16.3958 11.4166 16.75C11.4166 17.1042 11.2968 17.401 11.0573 17.6406C10.8177 17.8802 10.5208 18 10.1666 18ZM20.1666 18C19.8125 18 19.5156 17.8802 19.276 17.6406C19.0364 17.401 18.9166 17.1042 18.9166 16.75C18.9166 16.3958 19.0364 16.099 19.276 15.8594C19.5156 15.6198 19.8125 15.5 20.1666 15.5C20.5208 15.5 20.8177 15.6198 21.0573 15.8594C21.2968 16.099 21.4166 16.3958 21.4166 16.75C21.4166 17.1042 21.2968 17.401 21.0573 17.6406C20.8177 17.8802 20.5208 18 20.1666 18ZM15.1666 23C14.8125 23 14.5156 22.8802 14.276 22.6406C14.0364 22.401 13.9166 22.1042 13.9166 21.75C13.9166 21.3958 14.0364 21.099 14.276 20.8594C14.5156 20.6198 14.8125 20.5 15.1666 20.5C15.5208 20.5 15.8177 20.6198 16.0573 20.8594C16.2968 21.099 16.4166 21.3958 16.4166 21.75C16.4166 22.1042 16.2968 22.401 16.0573 22.6406C15.8177 22.8802 15.5208 23 15.1666 23ZM10.1666 23C9.81246 23 9.51558 22.8802 9.276 22.6406C9.03642 22.401 8.91663 22.1042 8.91663 21.75C8.91663 21.3958 9.03642 21.099 9.276 20.8594C9.51558 20.6198 9.81246 20.5 10.1666 20.5C10.5208 20.5 10.8177 20.6198 11.0573 20.8594C11.2968 21.099 11.4166 21.3958 11.4166 21.75C11.4166 22.1042 11.2968 22.401 11.0573 22.6406C10.8177 22.8802 10.5208 23 10.1666 23ZM20.1666 23C19.8125 23 19.5156 22.8802 19.276 22.6406C19.0364 22.401 18.9166 22.1042 18.9166 21.75C18.9166 21.3958 19.0364 21.099 19.276 20.8594C19.5156 20.6198 19.8125 20.5 20.1666 20.5C20.5208 20.5 20.8177 20.6198 21.0573 20.8594C21.2968 21.099 21.4166 21.3958 21.4166 21.75C21.4166 22.1042 21.2968 22.401 21.0573 22.6406C20.8177 22.8802 20.5208 23 20.1666 23Z" fill="#AEB8C3"/>
+            <path d="M6.41663 28C5.72913 28 5.14058 27.7552 4.651 27.2656C4.16142 26.776 3.91663 26.1875 3.91663 25.5V6.875C3.91663 6.11875 4.16142 5.47135 4.651 4.93281C5.14058 4.39427 5.72913 4.125 6.41663 4.125H7.66663V3H10.1666V4.125H20.1666V3H22.6666V4.125H23.9166C24.6041 4.125 25.1927 4.39427 25.6823 4.93281C26.1718 5.47135 26.4166 6.11875 26.4166 6.875V25.5C26.4166 26.1875 26.1718 26.776 25.6823 27.2656C25.1927 27.7552 24.6041 28 23.9166 28H6.41663ZM6.41663 25.5H23.9166V13H6.41663V25.5ZM6.41663 10.5H23.9166V6.875H6.41663V10.5ZM15.1666 18C14.8125 18 14.5156 17.8802 14.276 17.6406C14.0364 17.401 13.9166 17.1042 13.9166 16.75C13.9166 16.3958 14.0364 16.099 14.276 15.8594C14.5156 15.6198 14.8125 15.5 15.1666 15.5C15.5208 15.5 15.8177 15.6198 16.0573 15.8594C16.2968 16.099 16.4166 16.3958 16.4166 16.75C16.4166 17.1042 16.2968 17.401 16.0573 17.6406C15.8177 17.8802 15.5208 18 15.1666 18ZM10.1666 18C9.81246 18 9.51558 17.8802 9.276 17.6406C9.03642 17.401 8.91663 17.1042 8.91663 16.75C8.91663 16.3958 9.03642 16.099 9.276 15.8594C9.51558 15.6198 9.81246 15.5 10.1666 15.5C10.5208 15.5 10.8177 15.6198 11.0573 15.8594C11.2968 16.099 11.4166 16.3958 11.4166 16.75C11.4166 17.1042 11.2968 17.401 11.0573 17.6406C10.8177 17.8802 10.5208 18 10.1666 18ZM20.1666 18C19.8125 18 19.5156 17.8802 19.276 17.6406C19.0364 17.401 18.9166 17.1042 18.9166 16.75C18.9166 16.3958 19.0364 16.099 19.276 15.8594C19.5156 15.6198 19.8125 15.5 20.1666 15.5C20.5208 15.5 20.8177 15.6198 21.0573 15.8594C21.2968 16.099 21.4166 16.3958 21.4166 16.75C21.4166 17.1042 21.2968 17.401 21.0573 17.6406C20.8177 17.8802 20.5208 18 20.1666 18ZM15.1666 23C14.8125 23 14.5156 22.8802 14.276 22.6406C14.0364 22.401 13.9166 22.1042 13.9166 21.75C13.9166 21.3958 14.0364 21.099 14.276 20.8594C14.5156 20.6198 14.8125 20.5 15.1666 20.5C15.5208 20.5 15.8177 20.6198 16.0573 20.8594C16.2968 21.099 16.4166 21.3958 16.4166 21.75C16.4166 22.1042 16.2968 22.401 16.0573 22.6406C15.8177 22.8802 15.5208 23 15.1666 23ZM10.1666 23C9.81246 23 9.51558 22.8802 9.276 22.6406C9.03642 22.401 8.91663 22.1042 8.91663 21.75C8.91663 21.3958 9.03642 21.099 9.276 20.8594C9.51558 20.6198 9.81246 20.5 10.1666 20.5C10.5208 20.5 10.8177 20.6198 11.0573 20.8594C11.2968 21.099 11.4166 21.3958 11.4166 21.75C11.4166 22.1042 11.2968 22.401 11.0573 22.6406C10.8177 22.8802 10.5208 23 10.1666 23ZM20.1666 23C19.8125 23 19.5156 22.8802 19.276 22.6406C19.0364 22.401 18.9166 22.1042 18.9166 21.75C18.9166 21.3958 19.0364 21.099 19.276 20.8594C19.5156 20.6198 19.8125 20.5 20.1666 20.5C20.5208 20.5 20.8177 20.6198 21.0573 20.8594C21.2968 21.099 21.4166 21.3958 21.4166 21.75C21.4166 22.1042 21.2968 22.401 21.0573 22.6406C20.8177 22.8802 20.5208 23 20.1666 23Z" fill="#AEB8C3"/>
             </g>
             </svg>
             
@@ -254,6 +710,44 @@
         <span class="text-xs mt-1">Documentos</span>
     </a>
 </nav>
-  
+<script>
+    // JavaScript for accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionHeader = document.getElementById('accordion-header');
+        const rolesHeader = document.getElementById('roles-header');
+        const tarifasHeader = document.getElementById('tarifas-header');
+        const dummyHeader = document.getElementById('dummy-header');
+        const accordion = document.getElementById('casting-accordion');
+        const rolesAccordion = document.getElementById('roles-accordion');
+        const tarifasAccordion = document.getElementById('tarifas-accordion');
+        const dummyAccordion = document.getElementById('dummy-accordion');
+        const accordionContent = accordion.querySelector('.accordion-content');
+        const rolesContent = rolesAccordion.querySelector('.accordion-content');
+        const tarifasContent = tarifasAccordion.querySelector('.accordion-content');
+        const dummyContent = dummyAccordion.querySelector('.accordion-content');
+        const arrow = accordion.querySelector('.accordion-arrow');
+        const rolesArrow = rolesAccordion.querySelector('.accordion-arrow');
+        const tarifasArrow = tarifasAccordion.querySelector('.accordion-arrow');
+        const dummyArrow = dummyAccordion.querySelector('.accordion-arrow');
+
+        // Open all accordions by default
+        [accordionContent, rolesContent, tarifasContent, dummyContent].forEach(content => {
+            content.classList.add('open');
+        });
+        [arrow, rolesArrow, tarifasArrow, dummyArrow].forEach(arrow => {
+            arrow.classList.add('rotate-180');
+        });
+
+        function toggleAccordion(content, arrow) {
+            content.classList.toggle('open');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        accordionHeader.addEventListener('click', () => toggleAccordion(accordionContent, arrow));
+        rolesHeader.addEventListener('click', () => toggleAccordion(rolesContent, rolesArrow));
+        tarifasHeader.addEventListener('click', () => toggleAccordion(tarifasContent, tarifasArrow));
+        dummyHeader.addEventListener('click', () => toggleAccordion(dummyContent, dummyArrow));
+    });
+</script>
 </body>
 </html> 
