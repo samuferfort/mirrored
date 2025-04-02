@@ -4,19 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
         .calendar-day {
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
         }
         .calendar-day.active {
             background-color: #000;
             color: white;
             border-radius: 4px;
+        }
+        .calendar-day.selected {
+            background-color: #ef4444;
+            color: white;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .calendar-day:not(.text-gray-400):hover {
+            background-color: #f3f4f6;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .calendar-day.text-gray-400 {
+            cursor: default;
         }
         .calendar-day.has-event {
             position: relative;
@@ -35,27 +68,68 @@
         .calendar-day.has-event.multiple::after {
             box-shadow: -4px 0 0 0 #0000ff;
         }
+        
+        /* Modal animations */
+        #blockDatesModal {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #blockDatesModal.hidden {
+            opacity: 0;
+        }
+        #blockDatesModal:not(.hidden) {
+            opacity: 1;
+        }
+        #blockDatesModal .bg-white {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        #blockDatesModal:not(.hidden) .bg-white {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="">
         <div class="max-w-[95%] xl:max-w-[90%] mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center">
                 <img src="../assets/images/logo-desktop.png" alt="Logo" class="h-8 hidden md:h-10 md:block w-auto object-contain" />
                 <img src="../assets/images/logo-mobile.png" alt="Logo" class="h-8 md:h-10 w-auto md:hidden object-contain" />
             </div>
-
+    
             <!-- Navigation - Desktop -->
-            <div class="hidden md:flex items-center space-x-2">
-                <button class="px-4 py-2 "><a href="../index.html">Eventos</a></button>
-                <button class="px-4 py-2 bg-black text-white rounded"><a href="./calendar.html"> Calendario</a></button>
-                <button class="px-4 py-2"><a href="./multimedia.html">Multimedia</a></button>
-                <button class="px-4 py-2"><a href="./documents.html"> Documentos</a></button>
+            <div class="hidden md:flex items-center space-x-2 ">
+                <div class="bg-white border-gray-200 rounded-md p-1">
+                    <button class=" px-4 py-2 "><a href="../index.html">Eventos</a></button>
+                    <button class="px-4 py-2 bg-black text-white rounded"><a href="./calendar.html"> Calendario</a></button>
+                    <button class="px-4 py-2 "><a href="./multimedia.html">Multimedia</a></button>
+                    <button class="px-4 py-2  "><a href="./documents.html"> Documentos</a></button>
+                </div>
+               
                 <div class="relative ml-4">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/avatar-jDg1YDRVp3iwW6mxWexGH8OzO7AtyF.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
-                    <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                    <button id="notificationButton" class="relative focus:outline-none">
+                        <img src="../assets/images/avatar.png" alt="Profile" class="w-10 h-10 rounded-full object-cover">
+                        <span class="absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+                    </button>
+                    
+                    <!-- Notifications Dialog (initially hidden) -->
+                    <div id="notificationsDialog" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 z-20">
+                        <div class="px-4 py-2 border-b border-gray-100">
+                            <h3 class="font-semibold">Notificaciones (2)</h3>
+                        </div>
+                        <div class="max-h-96 overflow-y-auto">
+                            <div class="px-4 py-3 hover:bg-gray-50">
+                                <p class="text-sm">Tienes el evento <span class="font-medium">Loren Ipsum</span> pendiente de confirmar tu participación. Acceder desde la pestaña de eventos.</p>
+                                <p class="text-xs text-gray-500 mt-1">Hace 2 horas</p>
+                            </div>
+                            <div class="px-4 py-3 hover:bg-gray-50">
+                                <p class="text-sm">Tienes el evento <span class="font-medium">Loren Ipsum</span> pendiente de confirmar tu participación. Acceder desde la pestaña de eventos.</p>
+                                <p class="text-xs text-gray-500 mt-1">Hace 3 horas</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="relative">
                     <button id="menuButton" class="ml-2 focus:outline-none">
@@ -89,11 +163,12 @@
                                 
                             Cerrar sesión
                         </a>
+                       
                       
                     </div>
                 </div>
             </div>
-
+    
             <!-- Mobile Profile & Menu -->
             <div class="flex md:hidden items-center">
                 <div class="relative mr-4">
@@ -109,14 +184,15 @@
                     
                     <!-- Mobile Dropdown Menu (inicialmente oculto) -->
                     <div id="mobileDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-10">
-                        <a href="./edit-profile.html" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <a href="./edit-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 20.662V19C7 18.4696 7.21071 17.9609 7.58579 17.5858C7.96086 17.2107 8.46957 17 9 17H15C15.5304 17 16.0391 17.2107 16.4142 17.5858C16.7893 17.9609 17 18.4696 17 19V20.662M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 
                             Editar perfil
                         </a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <div class="border-t border-gray-100 my-1"></div>
+                        <a href="#" class="flex items-center px-4 gap-2 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 17H12.01M9.1001 8.99992C9.34008 8.33855 9.80487 7.78257 10.4132 7.42915C11.0216 7.07574 11.7348 6.94738 12.4282 7.06653C13.1216 7.18567 13.7511 7.54472 14.2066 8.08093C14.6621 8.61714 14.9146 9.29638 14.9201 9.99992C14.9201 11.9999 11.9201 12.9999 11.9201 12.9999M15 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V7L15 2Z" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -124,19 +200,18 @@
                             Contacto & FAQs
                         </a>
                         <div class="border-t border-gray-100 my-1"></div>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm text-red-700 hover:bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                        <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ml-1">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H7M14 15L19 10M19 10L14 5M19 10H7" stroke="#71717A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 
                             Cerrar sesión
                         </a>
-                        <div class="border-t border-gray-100 my-1"></div>
-                      
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
     <!-- Main Content -->
     <main class="max-w-[95%] xl:max-w-[90%] mx-auto px-6 py-6">
         <h1 class="text-3xl font-bold mb-8">Calendario</h1>
@@ -278,13 +353,131 @@
         </div>
         
         <!-- Block Unavailable Dates -->
-        <div class="bg-white rounded-lg shadow p-6 mt-6">
-            <h2 class="text-lg font-semibold mb-4">Bloquear fechas no disponibles</h2>
-            <button class="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition">
-                Bloquear fechas
-            </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-semibold mb-4">Bloquear fechas no disponibles</h2>
+                <div id="blockedDatesInfo" class="mb-4 hidden">
+                    <p class="text-sm text-gray-600">Tienes <span class="font-semibold">0</span> fechas bloqueadas.</p>
+                </div>
+                <button id="openBlockDatesModal" class="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition">
+                    Bloquear fechas
+                </button>
+            </div>
+            <div class="hidden lg:block">
+                <!-- Empty div to maintain grid alignment -->
+            </div>
         </div>
     </main>
+
+    <!-- Modal for Blocking Dates -->
+    <div id="blockDatesModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-4">
+            <div class="flex justify-between items-center px-6 py-4 border-b">
+                <h3 class="text-xl font-semibold text-gray-900">Bloquear fechas</h3>
+                <button id="closeBlockDatesModal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-600 mb-4">Seleccionar las fechas que no tienes disponibilidad.</p>
+                
+                <div class="calendar-modal">
+                    <div class="flex items-center justify-between mb-4">
+                        <button id="prevMonth" class="text-gray-600 hover:text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <h2 class="text-lg font-semibold">Enero</h2>
+                        <button id="nextMonth" class="text-gray-600 hover:text-gray-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div id="selectedCount" class="text-sm text-gray-600 mb-4 hidden">
+                        Fechas seleccionadas: <span class="font-semibold">0</span>
+                    </div>
+                    
+                    <!-- Calendar Days -->
+                    <div class="grid grid-cols-7 gap-2 text-center mb-2">
+                        <div class="text-sm font-medium text-gray-500">Lu</div>
+                        <div class="text-sm font-medium text-gray-500">Ma</div>
+                        <div class="text-sm font-medium text-gray-500">Mi</div>
+                        <div class="text-sm font-medium text-gray-500">Ju</div>
+                        <div class="text-sm font-medium text-gray-500">Vi</div>
+                        <div class="text-sm font-medium text-gray-500">Sa</div>
+                        <div class="text-sm font-medium text-gray-500">Do</div>
+                    </div>
+                    
+                    <!-- Calendar Dates -->
+                    <div class="grid grid-cols-7 gap-2 text-center">
+                        <!-- Week 1 -->
+                        <div class="calendar-day text-gray-400">25</div>
+                        <div class="calendar-day text-gray-400">26</div>
+                        <div class="calendar-day text-gray-400">27</div>
+                        <div class="calendar-day text-gray-400">28</div>
+                        <div class="calendar-day text-gray-400">29</div>
+                        <div class="calendar-day text-gray-400">30</div>
+                        <div class="calendar-day">1</div>
+                        
+                        <!-- Week 2 -->
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        
+                        <!-- Week 3 -->
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        
+                        <!-- Week 4 -->
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        
+                        <!-- Week 5 -->
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day text-gray-400">26</div>
+                        <div class="calendar-day text-gray-400">27</div>
+                        <div class="calendar-day text-gray-400">28</div>
+                        <div class="calendar-day text-gray-400">29</div>
+                        
+                        <!-- Week 6 -->
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day text-gray-400">1</div>
+                        <div class="calendar-day text-gray-400">2</div>
+                        <div class="calendar-day text-gray-400">3</div>
+                        <div class="calendar-day text-gray-400">4</div>
+                        <div class="calendar-day text-gray-400">5</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end px-6 py-4 border-t">
+                <button id="saveBlockedDates" class="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Mobile Navigation -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2">
@@ -372,6 +565,122 @@
                 }
             });
         }
+        
+        // Notifications functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationButton = document.getElementById('notificationButton');
+            const notificationsDialog = document.getElementById('notificationsDialog');
+            
+            // Close notifications when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!notificationButton.contains(event.target) && !notificationsDialog.contains(event.target)) {
+                    notificationsDialog.classList.add('hidden');
+                }
+            });
+            
+            // Toggle notifications dialog
+            notificationButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                notificationsDialog.classList.toggle('hidden');
+            });
+            
+            // Block Dates Modal Functionality
+            const openBlockDatesModal = document.getElementById('openBlockDatesModal');
+            const blockDatesModal = document.getElementById('blockDatesModal');
+            const closeBlockDatesModal = document.getElementById('closeBlockDatesModal');
+            const saveBlockedDates = document.getElementById('saveBlockedDates');
+            
+            // Add click event to the calendar days for selection
+            const calendarDays = blockDatesModal.querySelectorAll('.calendar-day');
+            const selectedCountElement = document.getElementById('selectedCount');
+            const countSpan = selectedCountElement.querySelector('span');
+            let selectedCount = 0;
+            
+            calendarDays.forEach(day => {
+                if (!day.classList.contains('text-gray-400')) {
+                    day.addEventListener('click', function() {
+                        this.classList.toggle('selected');
+                        if (this.classList.contains('selected')) {
+                            selectedCount++;
+                        } else {
+                            selectedCount--;
+                        }
+                        
+                        countSpan.textContent = selectedCount;
+                        
+                        if (selectedCount > 0) {
+                            selectedCountElement.classList.remove('hidden');
+                        } else {
+                            selectedCountElement.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+            
+            // Open modal
+            openBlockDatesModal.addEventListener('click', function() {
+                blockDatesModal.style.display = 'flex';
+                setTimeout(() => {
+                    blockDatesModal.classList.remove('hidden');
+                }, 10);
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            });
+            
+            // Function to close modal with animation
+            function closeModalWithAnimation() {
+                blockDatesModal.classList.add('hidden');
+                setTimeout(() => {
+                    if (blockDatesModal.classList.contains('hidden')) {
+                        blockDatesModal.style.display = 'none';
+                    }
+                }, 300); // Match the transition duration
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+            
+            // Function to reset selections
+            function resetSelections() {
+                calendarDays.forEach(day => {
+                    if (day.classList.contains('selected')) {
+                        day.classList.remove('selected');
+                    }
+                });
+                selectedCount = 0;
+                countSpan.textContent = '0';
+                selectedCountElement.classList.add('hidden');
+            }
+            
+            // Close modal with X button
+            closeBlockDatesModal.addEventListener('click', function() {
+                closeModalWithAnimation();
+                resetSelections();
+            });
+            
+            // Close modal with Save button
+            saveBlockedDates.addEventListener('click', function() {
+                closeModalWithAnimation();
+                
+                // Update the main page with blocked dates count
+                const blockedDatesInfo = document.getElementById('blockedDatesInfo');
+                const blockedCountSpan = blockedDatesInfo.querySelector('span');
+                blockedCountSpan.textContent = selectedCount;
+                
+                if (selectedCount > 0) {
+                    blockedDatesInfo.classList.remove('hidden');
+                } else {
+                    blockedDatesInfo.classList.add('hidden');
+                }
+                
+                // Don't reset selections, as they've been saved
+            });
+            
+            // Close modal when clicking outside
+            blockDatesModal.addEventListener('click', function(event) {
+                if (event.target === blockDatesModal) {
+                    closeModalWithAnimation();
+                    resetSelections();
+                }
+            });
+        });
     </script>
 </body>
 </html>
